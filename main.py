@@ -17,13 +17,13 @@ def get_video_url(search):
         trash, p = turn.split(r)
         link, trash = p.split(f)  # Get the String
         return link  # Return the String
-    else:
-        print("Video not found")
-        return "Error"
+    else: # Detected Error
+        print("Video not found") 
+        return "Error" # Tell the Programm to Stop
 
 def download_audio(url):
-    if url == "Error":
-        return
+    if url == "Error": # Detected Error
+        return # Stop
     yt = YouTube(url)  # Define Video
     ys = yt.streams.get_audio_only()  # Get Audio Only
     try:
@@ -31,10 +31,10 @@ def download_audio(url):
         new_title = str(str(yt.title) + ".mp3")  # Get new name
         old_title = str(str(yt.title) + ".mp4")  # Get old name
         os.rename(old_title, new_title)  # Rename file
-    except FileExistsError:
+    except FileExistsError: # If already Dowloaded
         return
     except:
-        print("Could not Rename File")
+        print("Could not Rename File") # Other Error
         return
 
 download_audio(get_video_url(""))  # Do Everything
